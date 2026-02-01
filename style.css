@@ -36,10 +36,31 @@
         background-color: var(--primary-clr);
         color: var(--white-clr);
         width: 350px;
-        height: 500px;
+        height: 600px;
         padding: 1rem;
         border-radius: 1rem;
         font-family: "JetBrains Mono";
+    }
+
+    .screen {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-display,
+    .secondary-display {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        flex: 1 1 auto;
+        /*height: 50px;
+        width: 100%;*/
+        padding-inline: 1rem;
+    }
+
+    .main-display {
+        font-size: 1.5rem;
+        padding-bottom: 2rem;
     }
 
     .keyboard {
