@@ -1,15 +1,14 @@
-function add(a, b) {
-  return a + b;
-}
+let numOne = 2;
+let numTwo = 2;
+let operator = "+";
 
-function subtract(a, b) {
-  return a - b;
-}
+const operators = {
+  "+": (a, b) => a + b,
+  "-": (a, b) => a - b,
+  "*": (a, b) => a * b,
+  "/": (a, b) => a / b,
+};
 
-function multiply(a, b) {
-  return a * b;
-}
-
-function divide(a, b) {
-  return a / b;
+function operate(a, b, op) {
+  return operators[op](a, b);
 }
