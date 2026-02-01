@@ -1,8 +1,15 @@
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url(./fonts/JetBrainsMono-VariableFont_wght.ttf) format("truetype");
+    font-weight: 400 700;
+}
+
 :root {
     --primary-clr: #071013;
     --secondary-clr: #313131;
     --tertiary-clr: #f69906;
     --white-clr: #fefefe;
+    --body-bg: #7f96aa;
 }
 
 @layer reset {
@@ -13,6 +20,7 @@
     }
 
     body {
+        background-color: var(--body-bg);
         width: 100vw;
         height: 100vh;
         display: flex;
@@ -23,22 +31,30 @@
 
 @layer calculator {
     #calculator {
+        display: grid;
+        grid-template-rows: 1fr 3fr;
         background-color: var(--primary-clr);
         color: var(--white-clr);
         width: 350px;
         height: 500px;
         padding: 1rem;
+        border-radius: 1rem;
+        font-family: "JetBrains Mono";
     }
 
     .keyboard {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0.5rem;
+        gap: 1.25rem;
     }
 
     .key {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: var(--secondary-clr);
         text-align: center;
+        border-radius: 7px;
     }
     .key.operator {
         background-color: var(--tertiary-clr);
