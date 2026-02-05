@@ -17,7 +17,15 @@ function operate(a, b, op) {
 }
 
 keyboard.addEventListener("click", (e) => {
-  if (e.target.matches(".key")) {
+  if (
+    e.target.matches(".key") &&
+    !e.target.matches(".clear") &&
+    !e.target.matches(".del")
+  ) {
     mainDisplay.textContent = mainDisplay.textContent + e.target.textContent;
+  } else if (e.target.matches(".clear")) {
+    mainDisplay.textContent = 0;
+  } else if (e.target.matches(".del")) {
+    mainDisplay.textContent = mainDisplay.textContent.slice(0, -1);
   }
 });
