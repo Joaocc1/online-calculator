@@ -79,7 +79,8 @@
         text-align: center;
         border-radius: 7px;
     }
-    .key.operator {
+    .key.operator,
+    .key.erase {
         background-color: var(--tertiary-clr);
     }
 
