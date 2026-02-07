@@ -23,7 +23,13 @@ function operate(a, b, op) {
   // first turn a and b into typeof number
   numA = Number(a);
   numB = Number(b);
-  return operators[op](numA, numB);
+
+  // prevent division by zero and operate if it's not the case
+  if (op === "/" && numB === 0) {
+    return "No, sorry but you're not allowed to do that";
+  } else {
+    return operators[op](numA, numB);
+  }
 }
 
 numberKeys.forEach((key) => {
@@ -102,26 +108,14 @@ eraseKeys.forEach((key) => {
   });
 });
 
-// keyboard.addEventListener("click", (e) => {
-//   if (
-//     e.target.matches(".key") &&
-//     !e.target.matches(".clear") &&
-//     !e.target.matches(".del")
-//   ) {
-//     numOne += e.target.textContent;
-//     mainDisplay.textContent = numOne;
-//   } else if (e.target.matches(".clear")) {
-//     numOne = numTwo = operator = "";
-//     mainDisplay.textContent = 0;
-//     secondaryDisplay.textContent = "";
-//   } else if (e.target.matches(".del")) {
-//     numOne = numOne.slice(0, -1);
-//     mainDisplay.textContent = numOne;
-//   }
-// });
-
 // to do:
-// Comment out the whole addEventListener above, create one for just the numbers (add a class of num in index.html)
-// Create the logic to update numOne and if an operator, a + for example is pressed, update the operator e move on to update the numTwo. If another operator or the = sign is press run operate()
-// Create an addEventListener for operators, when one is pressed update operator variable, change the updateVar to numTwo and display numOne + operator
-// add logic to check updateVar to know what variable to update, numOne or numTwo, and display that
+//
+// You should round answers with long decimals so that they don’t overflow the display.
+//
+// Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
+//
+// Extra credit
+
+// Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
+// Add a “backspace” button, so the user can undo their last input if they click the wrong number.
+// Add keyboard support!
