@@ -41,13 +41,22 @@ numberKeys.forEach((key) => {
 operatorKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
     console.log(updateVar);
-    if (e.target.textContent === "=" || updateVar === "num-two") {
+    if (e.target.textContent === "=") {
+      // check if all 3 variables needed are present
+      if (numOne && numTwo && operator) {
+        result = operate(numOne, numTwo, operator);
+        numOne = result;
+        numTwo = "";
+        mainDisplay.textContent = result;
+      }
+    } else if (e.target.textContent !== "=" && updateVar === "num-two") {
       result = operate(numOne, numTwo, operator);
       numOne = result;
       numTwo = "";
       operator = e.target.textContent;
-      mainDisplay.textContent = result;
+      mainDisplay.textContent = `${result}${operator}`;
     }
+
     if (e.target.textContent !== "=" && updateVar === "num-one") {
       operator = e.target.textContent;
       updateVar = "num-two";
