@@ -59,7 +59,7 @@ operatorKeys.forEach((key) => {
       mainDisplay.textContent = `${result}${operator}`;
     }
 
-    if (e.target.textContent !== "=" && stage === "one") {
+    if (e.target.textContent !== "=" && numOne !== "" && stage === "one") {
       operator = e.target.textContent;
       stage = "two";
       mainDisplay.textContent = `${numOne}${operator}`;
