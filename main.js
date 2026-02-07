@@ -10,7 +10,7 @@ let numTwo = "";
 let operator = "";
 let result = "";
 
-let updateVar = "num-one"; // to check which variable to update once a number is pressed
+let stage = "one"; // to check which stage the calculator is at (one, two, three)
 
 const operators = {
   "+": (a, b) => a + b,
@@ -28,10 +28,10 @@ function operate(a, b, op) {
 
 numberKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
-    if (updateVar === "num-one") {
+    if (stage === "one") {
       numOne += e.target.textContent;
       mainDisplay.textContent = numOne;
-    } else if (updateVar === "num-two") {
+    } else if (stage === "two") {
       numTwo += e.target.textContent;
       mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
     }
@@ -40,7 +40,6 @@ numberKeys.forEach((key) => {
 
 operatorKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
-    console.log(updateVar);
     if (e.target.textContent === "=") {
       // check if all 3 variables needed are present
       if (numOne && numTwo && operator) {
@@ -49,7 +48,7 @@ operatorKeys.forEach((key) => {
         numTwo = "";
         mainDisplay.textContent = result;
       }
-    } else if (e.target.textContent !== "=" && updateVar === "num-two") {
+    } else if (e.target.textContent !== "=" && stage === "two") {
       result = operate(numOne, numTwo, operator);
       numOne = result;
       numTwo = "";
@@ -57,9 +56,9 @@ operatorKeys.forEach((key) => {
       mainDisplay.textContent = `${result}${operator}`;
     }
 
-    if (e.target.textContent !== "=" && updateVar === "num-one") {
+    if (e.target.textContent !== "=" && stage === "one") {
       operator = e.target.textContent;
-      updateVar = "num-two";
+      stage = "two";
       mainDisplay.textContent = `${numOne}${operator}`;
     }
   });
@@ -71,10 +70,27 @@ eraseKeys.forEach((key) => {
       numOne = numTwo = operator = "";
       mainDisplay.textContent = "";
       secondaryDisplay.textContent = "";
-      updateVar = "num-one";
+      stage = "one";
     } else if (e.target.matches(".del")) {
-      numOne = numOne.slice(0, -1);
-      mainDisplay.textContent = numOne;
+      if (stage === "one") {
+        if (numOne.length === 0) {
+          numOne = "";
+        } else {
+          numOne = numOne.slice(0, -1);
+          mainDisplay.textContent = numOne;
+        }
+      }
+
+      if (stage === "two") {
+        operator = "";
+        stage = "one";
+        mainDisplay.textContent = numOne;
+      }
+
+      if (stage === "three") {
+        numTwo = numTwo.slice(0, -1);
+        mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+      }
     }
   });
 });
