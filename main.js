@@ -33,6 +33,7 @@ numberKeys.forEach((key) => {
       mainDisplay.textContent = numOne;
     } else if (stage === "two") {
       numTwo += e.target.textContent;
+      stage = "three";
       mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
     }
   });
@@ -42,16 +43,18 @@ operatorKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
     if (e.target.textContent === "=") {
       // check if all 3 variables needed are present
-      if (numOne && numTwo && operator) {
+      if (numOne && numTwo && operator && stage === "three") {
         result = operate(numOne, numTwo, operator);
         numOne = result;
         numTwo = "";
+        stage = "one";
         mainDisplay.textContent = result;
       }
-    } else if (e.target.textContent !== "=" && stage === "two") {
+    } else if (e.target.textContent !== "=" && stage === "three") {
       result = operate(numOne, numTwo, operator);
       numOne = result;
       numTwo = "";
+      stage = "two";
       operator = e.target.textContent;
       mainDisplay.textContent = `${result}${operator}`;
     }
@@ -73,10 +76,10 @@ eraseKeys.forEach((key) => {
       stage = "one";
     } else if (e.target.matches(".del")) {
       if (stage === "one") {
-        if (numOne.length === 0) {
+        if (numOne.length === 0 || numOne === "") {
           numOne = "";
         } else {
-          numOne = numOne.slice(0, -1);
+          numOne = numOne.toString().slice(0, -1);
           mainDisplay.textContent = numOne;
         }
       }
