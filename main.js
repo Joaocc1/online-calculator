@@ -10,7 +10,7 @@ let numTwo = "";
 let operator = "";
 let result = "";
 
-let stage = "one"; // to check which stage the calculator is at (one, two, three)
+let stage = "one"; // to check which stage the calculator is at (one, two, three, result)
 
 const operators = {
   "+": (a, b) => a + b,
@@ -28,10 +28,13 @@ function operate(a, b, op) {
 
 numberKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
-    if (stage === "one") {
+    if (stage === "result") {
+      numOne = e.target.textContent;
+      mainDisplay.textContent = numOne;
+    } else if (stage === "one") {
       numOne += e.target.textContent;
       mainDisplay.textContent = numOne;
-    } else if (stage === "two") {
+    } else if (stage === "two" || stage === "three") {
       numTwo += e.target.textContent;
       stage = "three";
       mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
@@ -47,7 +50,7 @@ operatorKeys.forEach((key) => {
         result = operate(numOne, numTwo, operator);
         numOne = result;
         numTwo = "";
-        stage = "one";
+        stage = "result";
         mainDisplay.textContent = result;
       }
     } else if (e.target.textContent !== "=" && stage === "three") {
@@ -57,9 +60,10 @@ operatorKeys.forEach((key) => {
       stage = "two";
       operator = e.target.textContent;
       mainDisplay.textContent = `${result}${operator}`;
-    }
-
-    if (e.target.textContent !== "=" && numOne !== "" && stage === "one") {
+    } else if (
+      (e.target.textContent !== "=" && numOne !== "" && stage === "one") ||
+      stage === "result"
+    ) {
       operator = e.target.textContent;
       stage = "two";
       mainDisplay.textContent = `${numOne}${operator}`;
