@@ -28,7 +28,7 @@ function operate(a, b, op) {
   if (op === "/" && numB === 0) {
     return "No, stop that!";
   } else {
-    return operators[op](numA, numB);
+    return Math.round(operators[op](numA, numB) * 100) / 100;
   }
 }
 
@@ -109,10 +109,6 @@ eraseKeys.forEach((key) => {
 });
 
 // to do:
-//
-// You should round answers with long decimals so that they don’t overflow the display.
-//
-// Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
 //
 // Extra credit
 
