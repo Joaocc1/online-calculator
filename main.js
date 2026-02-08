@@ -26,7 +26,7 @@ function operate(a, b, op) {
 
   // prevent division by zero and operate if it's not the case
   if (op === "/" && numB === 0) {
-    return "No, sorry but you're not allowed to do that";
+    return "No, stop that!";
   } else {
     return operators[op](numA, numB);
   }

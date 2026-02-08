@@ -33,11 +33,12 @@
 @layer calculator {
     #calculator {
         display: grid;
-        grid-template-rows: 1fr 3fr;
+        grid-template-rows: 1fr 2fr;
         background-color: var(--primary-clr);
         color: var(--white-clr);
         width: 350px;
         height: 600px;
+        max-width: 350px;
         padding: 1rem;
         border-radius: 1rem;
         font-family: "JetBrains Mono";
@@ -47,6 +48,9 @@
     .screen {
         display: flex;
         flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        padding-bottom: 1rem;
     }
 
     .main-display,
@@ -54,15 +58,18 @@
         display: flex;
         align-items: flex-end;
         justify-content: flex-end;
-        flex: 1 1 auto;
-        /*height: 50px;
-        width: 100%;*/
-        padding-inline: 1rem;
+        flex: 1 0 auto;
+        padding-inline: 0.5rem;
     }
 
     .main-display {
+        background-color: lightsteelblue;
+        max-width: 350px;
         font-size: 1.5rem;
-        padding-bottom: 2rem;
+    }
+
+    .secondary-display {
+        background-color: steelblue;
     }
 
     .keyboard {
