@@ -100,4 +100,8 @@
         grid-column: 4 / 4;
         grid-row: 6 / 4;
     }
+
+    .del-icon {
+        fill: var(--white-clr);
+    }
 }
