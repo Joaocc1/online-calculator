@@ -34,15 +34,28 @@ function operate(a, b, op) {
 
 function numberEvent(eventData) {
   if (stage === "result") {
-    numOne = eventData;
-    mainDisplay.textContent = numOne;
+    //prevent dot input twice
+    if (eventData === "." && numOne.includes(".")) {
+    } else {
+      numOne = eventData;
+      stage = "one";
+      mainDisplay.textContent = numOne;
+    }
   } else if (stage === "one") {
-    numOne += eventData;
-    mainDisplay.textContent = numOne;
+    //prevent dot input twice
+    if (eventData === "." && numOne.includes(".")) {
+    } else {
+      numOne += eventData;
+      mainDisplay.textContent = numOne;
+    }
   } else if (stage === "two" || stage === "three") {
-    numTwo += eventData;
-    stage = "three";
-    mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+    //prevent dot input twice
+    if (eventData === "." && numTwo.includes(".")) {
+    } else {
+      numTwo += eventData;
+      stage = "three";
+      mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+    }
   }
 }
 
@@ -134,6 +147,10 @@ document.addEventListener("keydown", (e) => {
     numberEvent(e.key);
   }
 
+  if (e.key === ".") {
+    numberEvent(e.key);
+  }
+
   if (isOperator || e.key === "Enter") {
     if (e.key === "Enter") {
       operatorEvent("=");
@@ -153,6 +170,6 @@ document.addEventListener("keydown", (e) => {
 
 // to do:
 //
-// Extra credit
-
-// Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
+// Make secondary display to work
+//
+// Restraint number of characters and maybe find a way to shorten the chars size
