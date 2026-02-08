@@ -108,10 +108,26 @@ eraseKeys.forEach((key) => {
   });
 });
 
+document.addEventListener("keydown", (e) => {
+  const isNumber = /^[0-9]$/i.test(e.key);
+  const isOperator = /[\/\*\+\-]/g.test(e.key);
+
+  if (isNumber) {
+    console.log(e.key);
+  }
+
+  if (isOperator) {
+    console.log(e.key);
+  }
+
+  if (e.key === "Backspace") {
+    console.log(e.key);
+  }
+});
+
 // to do:
 //
 // Extra credit
 
 // Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
-// Add a “backspace” button, so the user can undo their last input if they click the wrong number.
 // Add keyboard support!
