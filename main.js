@@ -32,78 +32,96 @@ function operate(a, b, op) {
   }
 }
 
-numberKeys.forEach((key) => {
-  key.addEventListener("click", (e) => {
-    if (stage === "result") {
-      numOne = e.target.textContent;
-      mainDisplay.textContent = numOne;
-    } else if (stage === "one") {
-      numOne += e.target.textContent;
-      mainDisplay.textContent = numOne;
-    } else if (stage === "two" || stage === "three") {
-      numTwo += e.target.textContent;
-      stage = "three";
-      mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
-    }
-  });
-});
+function numberEvent(eventData) {
+  if (stage === "result") {
+    numOne = eventData;
+    mainDisplay.textContent = numOne;
+  } else if (stage === "one") {
+    numOne += eventData;
+    mainDisplay.textContent = numOne;
+  } else if (stage === "two" || stage === "three") {
+    numTwo += eventData;
+    stage = "three";
+    mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+  }
+}
 
-operatorKeys.forEach((key) => {
-  key.addEventListener("click", (e) => {
-    if (e.target.textContent === "=") {
-      // check if all 3 variables needed are present
-      if (numOne && numTwo && operator && stage === "three") {
-        result = operate(numOne, numTwo, operator);
-        numOne = result;
-        numTwo = "";
-        stage = "result";
-        mainDisplay.textContent = result;
-      }
-    } else if (e.target.textContent !== "=" && stage === "three") {
+function operatorEvent(eventData) {
+  if (eventData === "=") {
+    // check if all 3 variables needed are present
+    if (numOne && numTwo && operator && stage === "three") {
       result = operate(numOne, numTwo, operator);
       numOne = result;
       numTwo = "";
-      stage = "two";
-      operator = e.target.textContent;
-      mainDisplay.textContent = `${result}${operator}`;
-    } else if (
-      (e.target.textContent !== "=" && numOne !== "" && stage === "one") ||
-      stage === "result"
-    ) {
-      operator = e.target.textContent;
-      stage = "two";
-      mainDisplay.textContent = `${numOne}${operator}`;
+      stage = "result";
+      mainDisplay.textContent = result;
     }
-  });
+  } else if (eventData !== "=" && stage === "three") {
+    result = operate(numOne, numTwo, operator);
+    numOne = result;
+    numTwo = "";
+    stage = "two";
+    operator = eventData;
+    mainDisplay.textContent = `${result}${operator}`;
+  } else if (
+    (eventData !== "=" && numOne !== "" && stage === "one") ||
+    stage === "result"
+  ) {
+    operator = eventData;
+    stage = "two";
+    mainDisplay.textContent = `${numOne}${operator}`;
+  }
+}
+
+function clearEvent() {
+  numOne = numTwo = operator = "";
+  mainDisplay.textContent = "";
+  secondaryDisplay.textContent = "";
+  stage = "one";
+}
+
+function deleteEvent() {
+  if (stage === "one") {
+    if (numOne.length === 0 || numOne === "") {
+      numOne = "";
+    } else {
+      numOne = numOne.toString().slice(0, -1);
+      mainDisplay.textContent = numOne;
+    }
+  }
+
+  if (stage === "two") {
+    operator = "";
+    stage = "one";
+    mainDisplay.textContent = numOne;
+  }
+
+  if (stage === "three") {
+    numTwo = numTwo.slice(0, -1);
+    mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+  }
+}
+
+numberKeys.forEach((key) => {
+  key.addEventListener("click", (e) => numberEvent(e.target.textContent));
+});
+
+operatorKeys.forEach((key) => {
+  key.addEventListener("click", (e) => operatorEvent(e.target.textContent));
 });
 
 eraseKeys.forEach((key) => {
   key.addEventListener("click", (e) => {
+    // console.log(e.target);
     if (e.target.matches(".clear")) {
-      numOne = numTwo = operator = "";
-      mainDisplay.textContent = "";
-      secondaryDisplay.textContent = "";
-      stage = "one";
-    } else if (e.target.matches(".del")) {
-      if (stage === "one") {
-        if (numOne.length === 0 || numOne === "") {
-          numOne = "";
-        } else {
-          numOne = numOne.toString().slice(0, -1);
-          mainDisplay.textContent = numOne;
-        }
-      }
-
-      if (stage === "two") {
-        operator = "";
-        stage = "one";
-        mainDisplay.textContent = numOne;
-      }
-
-      if (stage === "three") {
-        numTwo = numTwo.slice(0, -1);
-        mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
-      }
+      clearEvent();
+    } else if (
+      e.target.matches(".del") ||
+      e.target.matches(".del-icon") ||
+      e.target.matches(".svg")
+    ) {
+      console.log(e.target);
+      deleteEvent();
     }
   });
 });
@@ -113,15 +131,23 @@ document.addEventListener("keydown", (e) => {
   const isOperator = /[\/\*\+\-]/g.test(e.key);
 
   if (isNumber) {
-    console.log(e.key);
+    numberEvent(e.key);
   }
 
-  if (isOperator) {
-    console.log(e.key);
+  if (isOperator || e.key === "Enter") {
+    if (e.key === "Enter") {
+      operatorEvent("=");
+    } else {
+      operatorEvent(e.key);
+    }
+  }
+
+  if (e.key === "Delete") {
+    clearEvent();
   }
 
   if (e.key === "Backspace") {
-    console.log(e.key);
+    deleteEvent();
   }
 });
 
@@ -130,4 +156,3 @@ document.addEventListener("keydown", (e) => {
 // Extra credit
 
 // Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
-// Add keyboard support!

@@ -103,5 +103,6 @@
 
     .del-icon {
         fill: var(--white-clr);
+        pointer-events: none; /* Extremely important for when using an svg for backspace and the key to work when clicked */
     }
 }
