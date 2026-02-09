@@ -19,6 +19,7 @@ const operators = {
   "/": (a, b) => a / b,
 };
 
+// Functions
 function operate(a, b, op) {
   // first turn a and b into typeof number
   numA = Number(a);
@@ -63,6 +64,7 @@ function operatorEvent(eventData) {
   if (eventData === "=") {
     // check if all 3 variables needed are present
     if (numOne && numTwo && operator && stage === "three") {
+      secondaryDisplay.textContent = `${numOne}${operator}${numTwo}`;
       result = operate(numOne, numTwo, operator);
       numOne = result;
       numTwo = "";
@@ -70,6 +72,7 @@ function operatorEvent(eventData) {
       mainDisplay.textContent = result;
     }
   } else if (eventData !== "=" && stage === "three") {
+    secondaryDisplay.textContent = `${numOne}${operator}${numTwo}`;
     result = operate(numOne, numTwo, operator);
     numOne = result;
     numTwo = "";
@@ -115,6 +118,9 @@ function deleteEvent() {
   }
 }
 
+// Event listeners
+
+// Click events
 numberKeys.forEach((key) => {
   key.addEventListener("click", (e) => numberEvent(e.target.textContent));
 });
@@ -139,6 +145,7 @@ eraseKeys.forEach((key) => {
   });
 });
 
+// Keyboard events
 document.addEventListener("keydown", (e) => {
   const isNumber = /^[0-9]$/i.test(e.key);
   const isOperator = /[\/\*\+\-]/g.test(e.key);
@@ -169,7 +176,5 @@ document.addEventListener("keydown", (e) => {
 });
 
 // to do:
-//
-// Make secondary display to work
 //
 // Restraint number of characters and maybe find a way to shorten the chars size
