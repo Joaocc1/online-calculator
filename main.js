@@ -26,7 +26,7 @@ function operate(a, b, op) {
   numB = Number(b);
 
   // prevent division by zero and operate if it's not the case
-  if (op === "/" && numB === 0) {
+  if (op === "÷" && numB === 0) {
     return "No, stop that!";
   } else {
     return Math.round(operators[op](numA, numB) * 100) / 100;
@@ -161,6 +161,8 @@ document.addEventListener("keydown", (e) => {
   if (isOperator || e.key === "Enter") {
     if (e.key === "Enter") {
       operatorEvent("=");
+    } else if (e.key === "/") {
+      operatorEvent("÷");
     } else {
       operatorEvent(e.key);
     }
