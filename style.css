@@ -76,7 +76,7 @@
     .keyboard {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 1.25rem;
+        gap: 0.75rem;
     }
 
     .key {
@@ -85,6 +85,7 @@
         justify-content: center;
         background-color: var(--secondary-clr);
         text-align: center;
+        font-size: 1.5rem;
         border-radius: 7px;
     }
     .key.operator,
