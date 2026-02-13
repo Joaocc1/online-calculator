@@ -147,6 +147,7 @@ eraseKeys.forEach((key) => {
 
 // Keyboard events
 document.addEventListener("keydown", (e) => {
+  e.preventDefault();
   const isNumber = /^[0-9]$/i.test(e.key);
   const isOperator = /[\/\*\+\-]/g.test(e.key);
 
