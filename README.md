@@ -1,15 +1,42 @@
-# online-calculator
-A simple online calculator
+# Project Name
 
-This is part of the Odin Project and is the final project in the foundations path.
+A simple online calculator app. This is a project I took as part of The Odin Project [foundations path curriculum](https://www.theodinproject.com/paths/foundations/courses/foundations).
 
+## Overview
 
-### Log/Diary
+This project reproduces the functionality of a basic calculator, being able to do 4 math operations (addition, subtraction, multiplication and division).
 
-#### Day 1
-I started the project by creating the github repository and the initial files. The calculator layout was finished. It may need some tweaks or improvements but for now I'm happy with the result. The basic logic for the math operations is also done. I began with the initial stage of targetting elements in the html and returning their values as this will be the most important part in order to display what is clicked and what math operations will be made. The most time consuming task on this day was certainly the frontend layout. It was a good refresher on some concepts such as css variables and was also interesting for me to start using other css concepts like @layers and going a bit more in depth with grid.
+The objective to create this online calculator app was to apply all the basic html, css and javascript learned throughout the whole The Odin Project foundations path. Specifically how to create a simple html structure along with being able to position html elements accordingly and style them. For the javascript logic it was to demonstrate the ability to interact with the DOM and manipulate it.
 
+## Features
+- Basic 4 math operations
+- Keyboard support (the user is able to use the keyboard as well as clicking with the mouse)
 
-Important coding tricks and takeaways:
-- Using "global" addEventListeners as shown on this video (https://www.youtube.com/watch?v=cOoP8-NPLSo), to target individual keys.
-- Learning about using a "library" to target specific cases instead of using a switch statement. In this case a "library" is an object that will hold those specific cases, more specifically what to do when a certain value is passed (such as "+" or "-" for example in the case of this project). Learned from the exercise "Create an extendable calculator" from this link (https://javascript.info/array-methods#tasks)
+## Demo
+
+Here's the [Live Demo](https://joaocc1.github.io/online-calculator/)
+
+## Tech Stack
+
+- HTML
+- CSS
+- JavaScript
+
+## What I Learned
+
+- DOM manipulation practice
+  - It provided a good practice by "capturing" elements and manipulating them and its values
+- State management
+  - Coming up with creative ways to track state of variables and inputs from users
+- Event listeners
+  - Good practice and problem solving to handle several different inputs, either from the user clicking the ui buttons or using the keyboard
+- Use of flexbox and grid
+  - Using flexbox minimally and grid to better positioning of elements. Overall going a bit more in depth into grid, which is something I hadn't done before
+- Using a "library" to target specific cases
+  - Instead of using a switch statement, a "library" is an object that will hold those specific cases, more specifically what to do when a certain value is passed, such as "+" or "-" for example, as was the case when handling the logic of the 4 mathematical operations.
+
+## Acknowledgments
+
+- Inspiration for the "library" object taken from the exercise "Create an extendable calculator" from the website [Javascript.info](https://javascript.info/array-methods#tasks)
+- This [video](https://www.youtube.com/watch?v=cOoP8-NPLSo) from WebDevSimplified was important to better understand javascript event listeners
+- For the use of @layers and grid in this project's CSS, this [video](https://www.youtube.com/watch?v=jJgNgNNHqjk) from Kevin Powell, was the main inspiration.
