@@ -6,10 +6,10 @@
 
 :root {
     --primary-clr: #212121;
-    --secondary-clr: #313131;
-    --tertiary-clr: #52c9dc;
+    --secondary-clr: #505050;
+    --tertiary-clr: #f69906;
     --white-clr: #fefefe;
-    --body-bg: #d6f5f5;
+    --body-bg: #efe8de;
 }
 
 @layer reset {
@@ -51,7 +51,7 @@
         flex-direction: column;
         min-width: 0;
         overflow: hidden;
-        padding-bottom: 1rem;
+        padding-block: 3rem 2rem;
     }
 
     .main-display,
@@ -61,7 +61,7 @@
         justify-content: flex-end;
         flex: 1;
         /*height: 80px;*/
-        padding: 0.5rem 1rem;
+        padding-inline: 1rem;
     }
 
     .main-display {
