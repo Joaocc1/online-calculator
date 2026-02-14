@@ -36,7 +36,11 @@ function operate(a, b, op) {
 function numberEvent(eventData) {
   if (stage === "result") {
     //prevent dot input twice
-    if (eventData === "." && numOne.includes(".")) {
+    if (
+      (eventData === "." && numOne.includes(".")) ||
+      numOne.length === 15 ||
+      numTwo.length === 15
+    ) {
     } else {
       numOne = eventData;
       stage = "one";
@@ -44,14 +48,22 @@ function numberEvent(eventData) {
     }
   } else if (stage === "one") {
     //prevent dot input twice
-    if (eventData === "." && numOne.includes(".")) {
+    if (
+      (eventData === "." && numOne.includes(".")) ||
+      numOne.length === 15 ||
+      numTwo.length === 15
+    ) {
     } else {
       numOne += eventData;
       mainDisplay.textContent = numOne;
     }
   } else if (stage === "two" || stage === "three") {
     //prevent dot input twice
-    if (eventData === "." && numTwo.includes(".")) {
+    if (
+      (eventData === "." && numTwo.includes(".")) ||
+      numOne.length === 15 ||
+      numTwo.length === 15
+    ) {
     } else {
       numTwo += eventData;
       stage = "three";
@@ -177,7 +189,3 @@ document.addEventListener("keydown", (e) => {
     deleteEvent();
   }
 });
-
-// to do:
-//
-// Restraint number of characters and maybe find a way to shorten the chars size
