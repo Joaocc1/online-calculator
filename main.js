@@ -15,7 +15,7 @@ let stage = "one"; // to check which stage the calculator is at (one, two, three
 const operators = {
   "+": (a, b) => a + b,
   "-": (a, b) => a - b,
-  "*": (a, b) => a * b,
+  "×": (a, b) => a * b,
   "÷": (a, b) => a / b,
 };
 
