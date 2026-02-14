@@ -1,4 +1,4 @@
-# Project Name
+# Online Calculator
 
 A simple online calculator app. This is a project I took as part of The Odin Project [foundations path curriculum](https://www.theodinproject.com/paths/foundations/courses/foundations).
 
