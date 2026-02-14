@@ -5,11 +5,11 @@
 }
 
 :root {
-    --primary-clr: #071013;
+    --primary-clr: #212121;
     --secondary-clr: #313131;
-    --tertiary-clr: #f69906;
+    --tertiary-clr: #52c9dc;
     --white-clr: #fefefe;
-    --body-bg: #7f96aa;
+    --body-bg: #d6f5f5;
 }
 
 @layer reset {
@@ -42,6 +42,7 @@
         padding: 1rem;
         border-radius: 1rem;
         font-family: "JetBrains Mono";
+        font-weight: 700;
         user-select: none;
     }
 
@@ -60,17 +61,18 @@
         justify-content: flex-end;
         flex: 1;
         /*height: 80px;*/
-        padding-inline: 0.5rem;
+        padding: 0.5rem 1rem;
     }
 
     .main-display {
-        background-color: lightsteelblue;
+        background-color: var(--primary-clr);
         max-width: 350px;
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 
     .secondary-display {
-        background-color: steelblue;
+        background-color: var(--primary-clr);
+        font-size: 1.25rem;
     }
 
     .keyboard {
@@ -85,7 +87,7 @@
         justify-content: center;
         background-color: var(--secondary-clr);
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         border-radius: 7px;
     }
     .key.operator,
