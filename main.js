@@ -54,8 +54,12 @@ function numberEvent(eventData) {
       numTwo.length === 15
     ) {
     } else {
-      numOne += eventData;
-      mainDisplay.textContent = numOne;
+      // prevent from dot input if there's no number
+      if (eventData === "." && numOne === "") {
+      } else {
+        numOne += eventData;
+        mainDisplay.textContent = numOne;
+      }
     }
   } else if (stage === "two" || stage === "three") {
     //prevent dot input twice
@@ -65,9 +69,13 @@ function numberEvent(eventData) {
       numTwo.length === 15
     ) {
     } else {
-      numTwo += eventData;
-      stage = "three";
-      mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+      // prevent from dot input if there's no number
+      if (eventData === "." && numTwo === "") {
+      } else {
+        numTwo += eventData;
+        stage = "three";
+        mainDisplay.textContent = `${numOne}${operator}${numTwo}`;
+      }
     }
   }
 }
